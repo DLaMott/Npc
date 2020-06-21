@@ -1,0 +1,7 @@
+main: com.npc.NpcMain
+name: NpcMain
+version: 1.01
+author: dylan
+api-version: 1.13
+commands:
+  createnpc:
