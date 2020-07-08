@@ -2,7 +2,7 @@ package com.npc;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import net.minecraft.server.v1_15_R1.EntityPlayer;
+import net.minecraft.server.v1_16_R1.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
