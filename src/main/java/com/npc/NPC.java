@@ -4,13 +4,13 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import net.minecraft.server.v1_16_R1.*;
+import net.minecraft.server.v1_16_R3.*;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_16_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_16_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_16_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftServer;
+import org.bukkit.craftbukkit.v1_16_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.io.InputStreamReader;
@@ -31,7 +31,7 @@ public class NPC {
     public static void createNPC(Player player, String skin) {
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Bukkit.getWorld(player.getWorld().getName())).getHandle();
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + "Johnny");
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + "Kenobi");
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile, new PlayerInteractManager(world));
 
         npc.setLocation(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(),
@@ -41,6 +41,7 @@ public class NPC {
         gameProfile.getProperties().put("textures", new Property("textures", name[0], name[1]));
         addNPCPacket(npc);
         NPC.add(npc);
+        String message = "test1";
 
         int var = 1;
         if (NpcMain.getData().contains("data")) {
@@ -56,6 +57,8 @@ public class NPC {
         NpcMain.getData().set("data." + var + ".name", skin);
         NpcMain.getData().set("data." + var + ".text", name[0]);
         NpcMain.getData().set("data." + var + ".signature", name[1]);
+        // added for npc to have their own messages
+        NpcMain.getData().set("data." + var + ".message", message);
         NpcMain.saveData();
 
 
