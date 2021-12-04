@@ -7,9 +7,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class OnJoin implements Listener {
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
-
         PacketReader reader = new PacketReader();
-        reader.inject(event.getPlayer());
+        try{
+        reader.inject(event.getPlayer());}catch (Exception e){
+            System.out.println("Player not injected!!!!!!");
+        }
         NPC.addJoinPacket(event.getPlayer());
     }
 }

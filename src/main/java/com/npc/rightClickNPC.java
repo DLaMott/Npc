@@ -1,6 +1,7 @@
 package com.npc;
 
-import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.level.EntityPlayer;
+
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;
@@ -14,8 +15,6 @@ public class rightClickNPC extends Event implements Cancellable {
     private boolean isCancelled;
 
     public rightClickNPC(Player player, EntityPlayer npc) {
-
-
         this.player = player;
         this.npc = npc;
     }

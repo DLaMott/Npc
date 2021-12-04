@@ -2,7 +2,7 @@ package com.npc;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
+import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -52,7 +52,7 @@ public class NpcMain extends JavaPlugin {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PacketReader reader = new PacketReader();
             reader.unInject(player);
-            for (EntityPlayer npc : NPC.getNPCs())
+            for (EntityPlayer npc : NPC.getNpcs())
                 NPC.removeNPC(player, npc);
         }
     }

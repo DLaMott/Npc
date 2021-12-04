@@ -3,11 +3,11 @@ package com.npc;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
-import net.minecraft.server.v1_16_R3.EntityPlayer;
-import net.minecraft.server.v1_16_R3.Packet;
-import net.minecraft.server.v1_16_R3.PacketPlayInUseEntity;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.PacketPlayInUseEntity;
+import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_16_R3.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 
 import java.lang.reflect.Field;
@@ -18,20 +18,19 @@ import java.util.UUID;
 
 public class PacketReader {
 
-
     public Map<UUID, Channel> channels = new HashMap<UUID, Channel>();
+    private int count = 0;
     Channel channel;
 
     public void inject(Player player) {
 
         CraftPlayer craftPlayer = (CraftPlayer) player;
-        channel = craftPlayer.getHandle().playerConnection.networkManager.channel;
+        channel = craftPlayer.getHandle().b.a.k;
         channels.put(player.getUniqueId(), channel);
 
         if (channel.pipeline().get("PacketInjector") != null) {
             return;
         }
-
 
         channel.pipeline().addAfter("decoder", "PacketInjector", new MessageToMessageDecoder<PacketPlayInUseEntity>() {
 
@@ -45,14 +44,27 @@ public class PacketReader {
 
     public void unInject(Player player) {
         channel = channels.get(player.getUniqueId());
-        //if (channel.pipeline().get("PacketInjector") != null){
         channel.pipeline().remove("PacketInjector");
         channels.remove(player.getUniqueId());
     }
-    // }
 
     public void readPacket(Player player, Packet<?> packet) {
-        System.out.println("Packet >> " + packet);
+        if (packet.getClass().getSimpleName().equalsIgnoreCase("PacketPlayInUseEntity")) {
+            // Counts all actions
+            count++;
+            if (count == 4) {
+                count = 0;
+                int id = (int) getValue(packet, "a");
+                for (EntityPlayer npc : NPC.getNpcs()) {
+                    if (npc.getId() == id) {
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(NpcMain.getPlugin(NpcMain.class),
+                                () -> Bukkit.getPluginManager().callEvent(new rightClickNPC(player, npc)), 0);
+                    }
+                }
+            }
+        }
+        // Action for packet readers currently not operational
+        /*System.out.println("Packet >> " + packet);
         if (packet.getClass().getSimpleName().equalsIgnoreCase("PacketPlayInUseEntity")) {
 
             if (getValue(packet, "action").toString().equalsIgnoreCase("ATTACK"))
@@ -64,19 +76,13 @@ public class PacketReader {
             int id = (int) getValue(packet, "a");
             if (getValue(packet, "action").toString().equalsIgnoreCase("INTERACT")) {
 
-                for (EntityPlayer npc : NPC.getNPCs()) {
+                for (EntityPlayer npc : NPC.getNpcs()) {
                     if (npc.getId() == id) {
-                        Bukkit.getScheduler().scheduleSyncDelayedTask(NpcMain.getPlugin(NpcMain.class), new Runnable() {
-
-                            @Override
-                            public void run() {
-                                Bukkit.getPluginManager().callEvent(new rightClickNPC(player, npc));
-                            }
-                        }, 0);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(NpcMain.getPlugin(NpcMain.class), () -> Bukkit.getPluginManager().callEvent(new rightClickNPC(player, npc)), 0);
                     }
                 }
             }
-        }
+        }*/
     }
 
     private Object getValue(Object instance, String name) {
