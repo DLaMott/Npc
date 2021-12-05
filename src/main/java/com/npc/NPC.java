@@ -37,7 +37,7 @@ public class NPC {
 
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Objects.requireNonNull(Bukkit.getWorld(player.getWorld().getName()))).getHandle();
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + "Kenobi");
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + "RenameMe");
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile);
 
         npc.setLocation(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(),
@@ -49,7 +49,7 @@ public class NPC {
         NPC.add(npc);
 
         // variable for data custom message
-        String message = "Type a new message in the data.yml then reload server!";
+        String message = "Type a new message in the data.yml. Exit/Restart Server";
 
 
         int var = 1;

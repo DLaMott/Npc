@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class NpcMain extends JavaPlugin {
     public static DataManager data;
-    //private Config config;
+    private Config config;
 
     public static FileConfiguration getData() {
         return data.getConfig();
