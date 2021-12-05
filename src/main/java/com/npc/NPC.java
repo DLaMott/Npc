@@ -48,6 +48,9 @@ public class NPC {
         addNPCPacket(npc);
         NPC.add(npc);
 
+        // variable for data custom message
+        String message = "Type a new message in the data.yml then reload server!";
+
 
         int var = 1;
         if (NpcMain.getData().contains("data")) {
@@ -64,7 +67,7 @@ public class NPC {
         NpcMain.getData().set("data." + var + ".text", name[0]);
         NpcMain.getData().set("data." + var + ".signature", name[1]);
         // added for npc to have their own messages
-        //NpcMain.getData().set("data." + var + ".message");
+        NpcMain.getData().set("data." + var + ".message", message);
         NpcMain.saveData();
 
 
@@ -116,17 +119,9 @@ public class NPC {
 
     public static void addNPCPacket(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
-
-            Location location = npc.getBukkitEntity().getLocation();
-            location.setDirection(player.getLocation().subtract(location).toVector());
-            float yaw = location.getYaw();
-            float pitch = location.getPitch();
-
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
             connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
             connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
-            connection.sendPacket(new PacketPlayOutEntity.PacketPlayOutEntityLook(npc.getId(), (byte) (int) (yaw % 360.0F * 256.0F / 360.0F), (byte) (int) (pitch % 360.0F * 256.0F / 360.0F), false));
-            connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) yaw));
         }
     }
 
@@ -134,16 +129,9 @@ public class NPC {
 
 
         for (EntityPlayer npc : NPC) {
-            Location location = npc.getBukkitEntity().getLocation();
-            location.setDirection(player.getLocation().subtract(location).toVector());
-            float yaw = location.getYaw();
-            float pitch = location.getPitch();
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
             connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
             connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
-            connection.sendPacket(new PacketPlayOutEntity.PacketPlayOutEntityLook(npc.getId(), (byte) (int) (yaw % 360.0F * 256.0F / 360.0F), (byte) (int) (pitch % 360.0F * 256.0F / 360.0F), false));
-            connection.sendPacket(new PacketPlayOutEntityHeadRotation(npc, (byte) yaw));
-
         }
     }
 

@@ -14,7 +14,7 @@ import java.util.UUID;
 
 public class NpcMain extends JavaPlugin {
     public static DataManager data;
-    private Config config;
+    //private Config config;
 
     public static FileConfiguration getData() {
         return data.getConfig();
@@ -33,7 +33,7 @@ public class NpcMain extends JavaPlugin {
             loadNPC();
         }
 
-        this.config = new Config(this);
+        //this.config = new Config(this);
 
         for (Player player : Bukkit.getOnlinePlayers()) {
 
@@ -44,6 +44,7 @@ public class NpcMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new OnJoin(), this);
         this.getServer().getPluginManager().registerEvents(new ClickNPC(this), this);
         this.getCommand("createnpc").setExecutor(new AddNPC());
+        this.getServer().getPluginManager().registerEvents(new MovementListener(), this);
     }
 
     @Override
