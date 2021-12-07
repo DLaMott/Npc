@@ -61,4 +61,5 @@ message: changeme
 There is a /deletenpc npc command included with this build but currently only destroys npc in game and does not yet remove the NPC from your data.yml. This means the NPC will reload upon server restart. 
 
 ## NPC example with command:
-npcshowcase.png
+![npcshowcase](https://user-images.githubusercontent.com/66742430/144964825-0edca4cf-b2e7-4cbd-a899-7570363ba75e.png)
+
