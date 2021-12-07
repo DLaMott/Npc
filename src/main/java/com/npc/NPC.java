@@ -12,21 +12,18 @@ import net.minecraft.server.network.PlayerConnection;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
-import org.bukkit.craftbukkit.v1_17_R1.CraftServer;
-import org.bukkit.craftbukkit.v1_17_R1.CraftWorld;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.CraftServer;
+import org.bukkit.craftbukkit.v1_18_R1.CraftWorld;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
+import java.util.*;
 
 public class NPC {
     private static final List<EntityPlayer> NPC = new ArrayList<EntityPlayer>();
     private final NpcMain main;
+    public static DataManager data;
 
     public NPC(NpcMain main) {
         this.main = main;
@@ -35,13 +32,21 @@ public class NPC {
 
     public static void createNPC(Player player, String skin) {
 
+        int min = 1;
+        int max = 10;
+
+        Random random = new Random();
+
+        int value = random.nextInt(max + min) + min;
+        String npcname = "RenameMe" + String.valueOf(value);
+
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Objects.requireNonNull(Bukkit.getWorld(player.getWorld().getName()))).getHandle();
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + "RenameMe");
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + npcname);
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile);
-
-        npc.setLocation(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(),
+        npc.b(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(),
                 player.getLocation().getYaw(), player.getLocation().getPitch());
+
 
         String[] name = getSkin(player, skin);
         gameProfile.getProperties().put("textures", new Property("textures", name[0], name[1]));
@@ -50,7 +55,6 @@ public class NPC {
 
         // variable for data custom message
         String message = "Type a new message in the data.yml. Exit/Restart Server";
-
 
         int var = 1;
         if (NpcMain.getData().contains("data")) {
@@ -63,13 +67,12 @@ public class NPC {
         NpcMain.getData().set("data." + var + ".p", player.getLocation().getPitch());
         NpcMain.getData().set("data." + var + ".yaw", player.getLocation().getYaw());
         NpcMain.getData().set("data." + var + ".world", player.getLocation().getWorld().getName());
-        NpcMain.getData().set("data." + var + ".name", skin);
+        NpcMain.getData().set("data." + var + ".name", npcname);
         NpcMain.getData().set("data." + var + ".text", name[0]);
         NpcMain.getData().set("data." + var + ".signature", name[1]);
         // added for npc to have their own messages
         NpcMain.getData().set("data." + var + ".message", message);
         NpcMain.saveData();
-
 
     }
 
@@ -79,8 +82,7 @@ public class NPC {
         GameProfile gameProfile = profile;
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile);
 
-
-        npc.setLocation(location.getX(), location.getY(), location.getZ(),
+        npc.b(location.getX(), location.getY(), location.getZ(),
                 location.getYaw(), location.getPitch());
 
         addNPCPacket(npc);
@@ -102,7 +104,7 @@ public class NPC {
             return new String[]{texture, signature};
         } catch (Exception e) {
             EntityPlayer p = ((CraftPlayer) player).getHandle();
-            GameProfile profile = p.getProfile();
+            GameProfile profile = p.getBukkitEntity().getProfile();
             Property property = profile.getProperties().get("textures").iterator().next();
             String texture = property.getValue();
             String signature = property.getSignature();
@@ -113,25 +115,30 @@ public class NPC {
 
     public static void removeNPC(Player player, EntityPlayer npc) {
         PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
-        connection.sendPacket(new PacketPlayOutEntityDestroy(npc.getId()));
+        //Todo: sendpacket to player connection
+        System.out.println("RemoveNPC called");
+        connection.a(new PacketPlayOutEntityDestroy(npc.getBukkitEntity().getEntityId()));
+        System.out.println("Player was  was sent NPC destroy did it work?");
 
     }
 
     public static void addNPCPacket(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
-            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
-            connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+            //Todo: sendpacket to player connection
+            connection.a(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
+            connection.a(new PacketPlayOutNamedEntitySpawn(npc));
+
         }
     }
 
     public static void addJoinPacket(Player player) {
 
-
         for (EntityPlayer npc : NPC) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
-            connection.sendPacket(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
-            connection.sendPacket(new PacketPlayOutNamedEntitySpawn(npc));
+            //Todo: sendpacket to player connection
+            connection.a(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
+            connection.a(new PacketPlayOutNamedEntitySpawn(npc));
         }
     }
 

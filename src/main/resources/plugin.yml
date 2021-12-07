@@ -5,3 +5,4 @@ author: dylan
 api-version: 1.13
 commands:
   createnpc:
+  destroynpc:

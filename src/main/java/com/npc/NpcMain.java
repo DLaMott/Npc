@@ -32,9 +32,7 @@ public class NpcMain extends JavaPlugin {
         if (data.getConfig().contains("data")) {
             loadNPC();
         }
-
         //this.config = new Config(this);
-
         for (Player player : Bukkit.getOnlinePlayers()) {
 
             PacketReader reader = new PacketReader();
@@ -44,7 +42,9 @@ public class NpcMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new OnJoin(), this);
         this.getServer().getPluginManager().registerEvents(new ClickNPC(this), this);
         this.getCommand("createnpc").setExecutor(new AddNPC());
+        this.getCommand("destroynpc").setExecutor(new DestroyNPC());
         this.getServer().getPluginManager().registerEvents(new MovementListener(), this);
+        this.getCommand("destroynpc").setTabCompleter(new DestroyNpcTab());
     }
 
     @Override

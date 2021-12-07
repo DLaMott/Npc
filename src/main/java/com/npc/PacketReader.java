@@ -7,9 +7,8 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.PacketPlayInUseEntity;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_17_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
-
 import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.List;
@@ -56,7 +55,7 @@ public class PacketReader {
                 count = 0;
                 int id = (int) getValue(packet, "a");
                 for (EntityPlayer npc : NPC.getNpcs()) {
-                    if (npc.getId() == id) {
+                    if (npc.getBukkitEntity().getEntityId() == id) {
                         Bukkit.getScheduler().scheduleSyncDelayedTask(NpcMain.getPlugin(NpcMain.class),
                                 () -> Bukkit.getPluginManager().callEvent(new rightClickNPC(player, npc)), 0);
                     }

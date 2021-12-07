@@ -13,6 +13,7 @@ public class AddNPC implements CommandExecutor, Listener {
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
         if (label.equalsIgnoreCase("createnpc")) {
             if (!(sender instanceof Player)) {
                 return true;

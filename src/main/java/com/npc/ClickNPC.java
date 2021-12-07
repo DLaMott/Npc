@@ -28,11 +28,12 @@ public class ClickNPC implements Listener {
         Player player = event.getPlayer();
         //player.sendMessage(config.getString("Message2"));
         //player.sendMessage(config.getString("Message"));
+
         EntityPlayer npc1 = event.getNpc();
-        String npc2 = npc1.getName().substring(2);
+
+        String npc2 = npc1.getBukkitEntity().getName().substring(2);
         ArrayList<String> messageC = new ArrayList<String>();
         ArrayList<String> name = new ArrayList<String>();
-
 
         if (file.getConfigurationSection("data") != null) {
 
@@ -48,10 +49,10 @@ public class ClickNPC implements Listener {
             for(int i = 0; i < name.size(); i++){
                 if(npc2.equals(String.valueOf(name.get(i)))){
                     player.sendMessage(String.valueOf(messageC.get(i)));
+                }
             }
         }
-    }
-}}
+    }}
 
 
 
