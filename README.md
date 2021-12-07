@@ -6,6 +6,10 @@ This plugin allows a user to create an NPC that clones the user's skin. The NPC'
 
 Please refer to version history to find the correct version for your spigot server! This plugin at this time is not backwards compatible. You must download the correct plugin version per your spigot server version! Refer to below for correct versions:
 
+For multiple versions go to the main spigot repo for this plugin
+
+### Spigot repo location: https://www.spigotmc.org/resources/npc.81087/
+
 Current Github version is for Spigot 1.18!
 
 Update 4.0 NPC fix/1.17.1 support : NPC head/body will rotate tracking a player when a player is within radius to the NPC, custom messages, various bugs.
