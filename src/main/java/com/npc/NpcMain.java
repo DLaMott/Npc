@@ -44,6 +44,7 @@ public class NpcMain extends JavaPlugin {
         this.getCommand("destroynpc").setExecutor(new DestroyNPC());
         this.getServer().getPluginManager().registerEvents(new MovementListener(), this);
         this.getCommand("destroynpc").setTabCompleter(new DestroyNpcTab());
+        this.getCommand("createnpc").setTabCompleter(new SkinTab());
     }
 
     @Override
