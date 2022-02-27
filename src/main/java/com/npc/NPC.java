@@ -115,20 +115,14 @@ public class NPC {
 
     public static void removeNPC(Player player, EntityPlayer npc) {
         PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
-        //Todo: sendpacket to player connection
-        System.out.println("RemoveNPC called");
         connection.a(new PacketPlayOutEntityDestroy(npc.getBukkitEntity().getEntityId()));
-        System.out.println("Player was  was sent NPC destroy did it work?");
-
     }
 
     public static void addNPCPacket(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
-            //Todo: sendpacket to player connection
             connection.a(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
             connection.a(new PacketPlayOutNamedEntitySpawn(npc));
-
         }
     }
 
@@ -136,7 +130,6 @@ public class NPC {
 
         for (EntityPlayer npc : NPC) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
-            //Todo: sendpacket to player connection
             connection.a(new PacketPlayOutPlayerInfo(PacketPlayOutPlayerInfo.EnumPlayerInfoAction.a, npc));
             connection.a(new PacketPlayOutNamedEntitySpawn(npc));
         }

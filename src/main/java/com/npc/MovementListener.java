@@ -17,7 +17,7 @@ public class MovementListener implements Listener {
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e){
 
-        NPC.getNpcs().stream().forEach(npc -> {
+        NPC.getNpcs().forEach(npc -> {
 
             for (Player p : Bukkit.getOnlinePlayers()) {
                 if (calcDistance(p, npc) > 5) continue;

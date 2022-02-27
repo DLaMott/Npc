@@ -36,12 +36,7 @@ public class DestroyNPC implements CommandExecutor, Listener {
                 if (args[0].equals(npcNames.get(i))) {
                     //Todo: Erase NPC from data.yml upon command call
                     NPC.removeNPC(player, npc1.get(i));
-                    // pull npc data?
-                    // Search for keys in data config?
 
-                    //if npc.id.equal(data.("path")){
-                    // data.set(idfk, null)}
-                    // Is there a better way? Probably. 
                     System.out.println(npc1.get(i));
                     player.sendMessage("NPC zooted");
                     return true;

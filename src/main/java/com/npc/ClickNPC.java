@@ -10,13 +10,12 @@ import java.util.ArrayList;
 
 
 public class ClickNPC implements Listener {
-    //private final FileConfiguration config;
+
     private final NpcMain main;
     public static DataManager data;
 
     public ClickNPC(NpcMain main) {
         this.main = main;
-        //this.config = main.getConfig();
     }
 
     @EventHandler
@@ -26,9 +25,6 @@ public class ClickNPC implements Listener {
         FileConfiguration file = data.getConfig();
 
         Player player = event.getPlayer();
-        //player.sendMessage(config.getString("Message2"));
-        //player.sendMessage(config.getString("Message"));
-
         EntityPlayer npc1 = event.getNpc();
 
         String npc2 = npc1.getBukkitEntity().getName().substring(2);

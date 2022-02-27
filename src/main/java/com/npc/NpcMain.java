@@ -32,9 +32,8 @@ public class NpcMain extends JavaPlugin {
         if (data.getConfig().contains("data")) {
             loadNPC();
         }
-        //this.config = new Config(this);
-        for (Player player : Bukkit.getOnlinePlayers()) {
 
+        for (Player player : Bukkit.getOnlinePlayers()) {
             PacketReader reader = new PacketReader();
             reader.inject(player);
         }
