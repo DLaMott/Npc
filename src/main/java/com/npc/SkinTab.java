@@ -25,12 +25,12 @@ public class SkinTab implements TabCompleter {
         for (int i = 0; i < m.length; i++){
             arguments.add(m[i].name());
         }
-        List<String> result = new ArrayList<String>();
+        List<String> results = new ArrayList<String>();
         if (args.length == 1) {
             for (String a : arguments) {
-                if (a.toLowerCase().startsWith(args[0].toLowerCase())) result.add(a);
+                if (a.toLowerCase().startsWith(args[0].toLowerCase())) results.add(a);
             }
-            return result;
+            return results;
         }
         return arguments;
     }

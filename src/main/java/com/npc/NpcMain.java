@@ -62,8 +62,11 @@ public class NpcMain extends JavaPlugin {
         FileConfiguration file = data.getConfig();
         if (file.getConfigurationSection("data") != null) {
             file.getConfigurationSection("data").getKeys(false).forEach(npc -> {
+
                 Location location = new Location(Bukkit.getWorld(file.getString("data." + npc + ".world")),
-                        file.getInt("data." + npc + ".x"), file.getInt("data." + npc + ".y"), file.getInt("data." + npc + ".z"));
+                        file.getInt("data." + npc + ".x"),
+                        file.getInt("data." + npc + ".y"),
+                        file.getInt("data." + npc + ".z"));
                 location.setPitch((float) file.getDouble("data." + npc + ".p"));
                 location.setYaw((float) file.getDouble("data." + npc + ".yaw"));
 

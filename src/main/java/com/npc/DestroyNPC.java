@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
+
 import java.util.ArrayList;
 
 public class DestroyNPC implements CommandExecutor, Listener {
@@ -32,15 +33,16 @@ public class DestroyNPC implements CommandExecutor, Listener {
                     return true;
                 }
                 Player player = (Player) sender;
-                try{
-                if (args[0].equals(npcNames.get(i))) {
-                    //Todo: Erase NPC from data.yml upon command call
-                    NPC.removeNPC(player, npc1.get(i));
+                try {
+                    if (args[0].equals(npcNames.get(i))) {
+                        //Todo: Erase NPC from data.yml upon command call
+                        NPC.removeNPC(player, npc1.get(i));
 
-                    System.out.println(npc1.get(i));
-                    player.sendMessage("NPC zooted");
-                    return true;
-                }}catch (Exception e){
+                        System.out.println(npc1.get(i));
+                        player.sendMessage("NPC zooted");
+                        return true;
+                    }
+                } catch (Exception e) {
                     player.sendMessage("Enter a valid npc name!!!!");
                 }
             }

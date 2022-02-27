@@ -63,7 +63,7 @@ public class PacketReader {
             }
         }
         // Action for packet readers currently not operational
-        /*System.out.println("Packet >> " + packet);
+        /* System.out.println("Packet >> " + packet);
         if (packet.getClass().getSimpleName().equalsIgnoreCase("PacketPlayInUseEntity")) {
 
             if (getValue(packet, "action").toString().equalsIgnoreCase("ATTACK"))
@@ -77,7 +77,8 @@ public class PacketReader {
 
                 for (EntityPlayer npc : NPC.getNpcs()) {
                     if (npc.getId() == id) {
-                        Bukkit.getScheduler().scheduleSyncDelayedTask(NpcMain.getPlugin(NpcMain.class), () -> Bukkit.getPluginManager().callEvent(new rightClickNPC(player, npc)), 0);
+                        Bukkit.getScheduler().scheduleSyncDelayedTask(NpcMain.getPlugin(NpcMain.class),
+                         () -> Bukkit.getPluginManager().callEvent(new rightClickNPC(player, npc)), 0);
                     }
                 }
             }

@@ -33,7 +33,7 @@ public class NPC {
     public static void createNPC(Player player, String skin) {
 
         int min = 1;
-        int max = 10;
+        int max = 100;
 
         Random random = new Random();
 
