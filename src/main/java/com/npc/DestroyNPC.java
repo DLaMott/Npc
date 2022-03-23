@@ -4,6 +4,7 @@ import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
@@ -37,7 +38,6 @@ public class DestroyNPC implements CommandExecutor, Listener {
                     if (args[0].equals(npcNames.get(i))) {
                         //Todo: Erase NPC from data.yml upon command call
                         NPC.removeNPC(player, npc1.get(i));
-
                         System.out.println(npc1.get(i));
                         player.sendMessage("NPC zooted");
                         return true;
