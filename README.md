@@ -2,7 +2,7 @@
 
 ## Hello!
 
-This plugin allows a user to create an NPC that clones the user's skin. The NPC's location is then saved in a data.yml file to be reused after a server is shut down. The NPC will also display a message when the player clicks on the NPC. The messages are changeable within the given data.yml. Each spawned NPC can have their own custom message.
+This plugin allows a user to create an NPC that clones the user's skin. If users would like to use an entity skin simply type the skin name after the npc name upon creation. The NPC's location is then saved in a data.yml file to be reused after a server is shut down. The NPC will also display a message when the player clicks on the NPC. The messages are changeable within the given data.yml. Each spawned NPC can have their own custom message.
 
 Please refer to version history to find the correct version for your spigot server! This plugin at this time is not backwards compatible. You must download the correct plugin version per your spigot server version! Refer to below for correct versions:
 
@@ -10,9 +10,11 @@ For multiple versions go to the main spigot repo for this plugin
 
 ### Spigot repo location: https://www.spigotmc.org/resources/npc.81087/
 
-Current Github version is for Spigot 1.18!
+Current Github version is for Spigot 1.18.1!
 
 Update 4.0 NPC fix/1.17.1 support : NPC head/body will rotate tracking a player when a player is within radius to the NPC, custom messages, various bugs.
+
+Update 5.0 NPC can now be delete via command, custom skins by naming added, custom skin tab added, performances issues resolved.
 
 
 ## Todo:
@@ -50,7 +52,7 @@ Close and restart server to see your changes!
 ## Delete NPC:
 
 Option one:
-In game admins can simply type \deletenpc and select the npc name they wish to delete. Simply restart the server to see the changes.
+In game admins can simply type /deletenpc and select the npc name they wish to delete. Simply restart the server to see the changes.
 
 Option two:
 Navigate to data.yml and delete the NPC fields for the NPC you wish to delete.
