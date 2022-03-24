@@ -10,6 +10,7 @@ import java.io.InputStreamReader;
 import java.util.logging.Level;
 
 public class DataManager {
+
     private final NpcMain plugin;
     private FileConfiguration dataConfig = null;
     private File configFile = null;
@@ -29,6 +30,10 @@ public class DataManager {
         }
     }
 
+    /***
+     *
+     * @return the data.yml
+     */
     public FileConfiguration getConfig() {
         if (this.dataConfig == null) {
             reloadConfig();
@@ -36,6 +41,9 @@ public class DataManager {
         return this.dataConfig;
     }
 
+    /***
+     * Save the configuration file.
+     */
     public void saveConfig() {
         if (this.dataConfig == null || this.configFile == null) {
             return;

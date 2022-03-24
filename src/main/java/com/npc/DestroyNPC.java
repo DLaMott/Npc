@@ -19,6 +19,16 @@ public class DestroyNPC implements CommandExecutor, Listener {
         this.main = main;
     }
 
+    /***
+     *  Takes in a destroynpc label and a string for the npc in need of deletion.
+     *  Proper validation will call {@link NPC} to remove the NPC from the server.
+     *  Proper name validation will remove the NPC from the data.yml file.
+     * @param sender Sender of the command
+     * @param cmd Command being sent
+     * @param label String label
+     * @param args String text
+     * @return True upon a valid command string
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         data = new DataManager(main);
