@@ -36,10 +36,9 @@ public class ClickNPC implements Listener {
             file.getConfigurationSection("data").getKeys(false).forEach( npc ->{
                 String message = file.getString("data."+ npc +".message");
                 String Cname = file.getString("data." + npc +".name");
-                for (int i = 0; i < npc.length(); i++){
                     messageC.add(message);
                     name.add(Cname);
-                }
+
             });
 
             for(int i = 0; i < name.size(); i++){

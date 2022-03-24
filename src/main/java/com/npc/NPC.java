@@ -21,6 +21,7 @@ import java.net.URL;
 import java.util.*;
 
 public class NPC {
+
     private static final List<EntityPlayer> NPC = new ArrayList<EntityPlayer>();
     private final NpcMain main;
     public static DataManager data;
@@ -70,7 +71,6 @@ public class NPC {
         NpcMain.getData().set("data." + var + ".name", npcname);
         NpcMain.getData().set("data." + var + ".text", name[0]);
         NpcMain.getData().set("data." + var + ".signature", name[1]);
-        // added for npc to have their own messages
         NpcMain.getData().set("data." + var + ".message", message);
         NpcMain.saveData();
 
