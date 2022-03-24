@@ -1,5 +1,7 @@
-package com.npc;
+package com.npc.Destroy;
 
+import com.npc.Data.DataManager;
+import com.npc.NpcMain;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
@@ -20,6 +22,15 @@ public class DestroyNpcTab implements TabCompleter {
         this.main = main;
     }
 
+    /***
+     * Creates a list of NPC names to be used as a tab completer in game. NPC names for pulled from
+     * the data.yml file.
+     * @param commandSender Command being sent
+     * @param command The command
+     * @param label String label for the command
+     * @param args String arguments
+     * @return a List of strings
+     */
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] args) {
 

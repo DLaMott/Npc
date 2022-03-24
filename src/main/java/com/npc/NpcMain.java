@@ -2,6 +2,17 @@ package com.npc;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import com.npc.Data.DataManager;
+import com.npc.Data.MovementListener;
+import com.npc.Destroy.DestroyNPC;
+import com.npc.Destroy.DestroyNpcTab;
+import com.npc.NpcConfiguration.AddNPC;
+import com.npc.NpcConfiguration.ClickNPC;
+import com.npc.NpcConfiguration.NPC;
+import com.npc.NpcConfiguration.SkinTab;
+import com.npc.Packets.OnJoin;
+import com.npc.Packets.OnQuit;
+import com.npc.Packets.PacketReader;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -9,7 +20,6 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.util.UUID;
 
 public class NpcMain extends JavaPlugin {
@@ -27,6 +37,8 @@ public class NpcMain extends JavaPlugin {
         data.reloadConfig();
     }
 
+    public static PacketReader reader = new PacketReader();
+
     @Override
     public void onEnable() {
 
@@ -37,7 +49,6 @@ public class NpcMain extends JavaPlugin {
         }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            PacketReader reader = new PacketReader();
             reader.inject(player);
         }
 
@@ -48,16 +59,25 @@ public class NpcMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new MovementListener(), this);
         this.getCommand("destroynpc").setTabCompleter(new DestroyNpcTab(this));
         this.getCommand("createnpc").setTabCompleter(new SkinTab());
+        this.getServer().getPluginManager().registerEvents(new OnQuit(this), this);
     }
 
     @Override
     public void onDisable() {
-        //this.getServer().getPluginManager().registerEvents(new OnQuit(), this);
+
         for (Player player : Bukkit.getOnlinePlayers()) {
-            PacketReader reader = new PacketReader();
+
             reader.unInject(player);
-            for (EntityPlayer npc : NPC.getNpcs())
-                NPC.removeNPC(player, npc);
+
+            for (EntityPlayer npc : NPC.getNpcs()){
+               try{
+
+                   NPC.removeNPC(npc);
+
+               }catch (Exception cx){
+                   cx.getCause();
+               }
+            }
         }
     }
 

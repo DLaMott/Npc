@@ -1,9 +1,11 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import com.npc.Data.DataManager;
+import com.npc.NpcMain;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.EntityPlayer;
@@ -31,6 +33,11 @@ public class NPC {
 
     }
 
+    /***
+     *
+     * @param player Player sending the request
+     * @param skin Skin chosen
+     */
     public static void createNPC(Player player, String skin) {
 
         int min = 1;
@@ -54,8 +61,7 @@ public class NPC {
         addNPCPacket(npc);
         NPC.add(npc);
 
-        // variable for data custom message
-        String message = "Type a new message in the data.yml. Exit/Restart Server";
+        String message = "Type a new message in the data.yml. Exit/Restart/Reload Server";
 
         int var = 1;
         if (NpcMain.getData().contains("data")) {
@@ -76,6 +82,12 @@ public class NPC {
 
     }
 
+    /***
+     * Adds NPC packet to the server.
+     *
+     * @param location Location in the game
+     * @param profile Load game profile
+     */
     public static void loadNPC(Location location, GameProfile profile) {
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) location.getWorld()).getHandle();
@@ -90,6 +102,12 @@ public class NPC {
 
     }
 
+    /***
+     *
+     * @param player Valid player
+     * @param name The name of the skin
+     * @return The texture and signature of a skin
+     */
     private static String[] getSkin(Player player, String name) {
         try {
             URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" + name);
@@ -113,11 +131,21 @@ public class NPC {
         }
     }
 
-    public static void removeNPC(Player player, EntityPlayer npc) {
+    /***
+     * Destroy the packet for an NPC
+     * @param npc a valid npc
+     */
+    public static void removeNPC(EntityPlayer npc) {
+        for(Player player : Bukkit.getOnlinePlayers()){
         PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
         connection.a(new PacketPlayOutEntityDestroy(npc.getBukkitEntity().getEntityId()));
+        }
     }
 
+    /***
+     *
+     * @param npc The NPC being added
+     */
     public static void addNPCPacket(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
@@ -126,6 +154,10 @@ public class NPC {
         }
     }
 
+    /***
+     *
+     * @param player player connecting to the server
+     */
     public static void addJoinPacket(Player player) {
 
         for (EntityPlayer npc : NPC) {
@@ -135,6 +167,10 @@ public class NPC {
         }
     }
 
+    /***
+     *
+     * @return A list of NPCs
+     */
     public static List<EntityPlayer> getNpcs(){
         return NPC;
     }

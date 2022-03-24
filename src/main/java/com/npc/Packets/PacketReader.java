@@ -1,5 +1,8 @@
-package com.npc;
+package com.npc.Packets;
 
+import com.npc.NpcConfiguration.NPC;
+import com.npc.NpcMain;
+import com.npc.NpcConfiguration.rightClickNPC;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;
@@ -10,22 +13,24 @@ import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class PacketReader {
 
-    public Map<UUID, Channel> channels = new HashMap<UUID, Channel>();
+    public static Map<UUID, Channel> channels = new HashMap<UUID, Channel>();
     private int count = 0;
     Channel channel;
 
+    /***
+     * Adds a {@link Player} to the packet reader pipeline. Allows the reading of player packet information.
+     * @param player The player to be injected to the {@link Channel} pipeline.
+     */
     public void inject(Player player) {
 
         CraftPlayer craftPlayer = (CraftPlayer) player;
         channel = craftPlayer.getHandle().b.a.k;
         channels.put(player.getUniqueId(), channel);
+        System.out.println(player.getDisplayName() + " Added to pipeline");
 
         if (channel.pipeline().get("PacketInjector") != null) {
             return;
@@ -41,12 +46,40 @@ public class PacketReader {
         });
     }
 
+    /***
+     * Removes a player from a Channel pipeline. Can be used on plugin disable or player quit event.
+     * @param player the {@link Player} to be removed from the pipeline
+     */
     public void unInject(Player player) {
-        channel = channels.get(player.getUniqueId());
-        channel.pipeline().remove("PacketInjector");
-        channels.remove(player.getUniqueId());
+
+        try{
+
+            channel = channels.get(player.getUniqueId());
+
+            try{
+
+            channel.pipeline().remove("PacketInjector");
+
+            }catch (Exception ex){
+
+                System.out.println(ex.getMessage());
+            }
+
+            channels.remove(player.getUniqueId());
+            System.out.println("Removed " + player.getDisplayName() + " from injector");
+
+        }catch (Exception ex){
+
+            System.out.println(Arrays.toString(ex.getStackTrace()));
+            System.out.println("Player not removed");
+        }
     }
 
+    /***
+     * Reads a {@link Packet} from a {@link Player}
+     * @param player The player
+     * @param packet The Packet
+     */
     public void readPacket(Player player, Packet<?> packet) {
         if (packet.getClass().getSimpleName().equalsIgnoreCase("PacketPlayInUseEntity")) {
             // Counts all actions

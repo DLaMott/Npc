@@ -1,5 +1,8 @@
-package com.npc;
+package com.npc.Destroy;
 
+import com.npc.Data.DataManager;
+import com.npc.NpcConfiguration.NPC;
+import com.npc.NpcMain;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,6 +22,16 @@ public class DestroyNPC implements CommandExecutor, Listener {
         this.main = main;
     }
 
+    /***
+     *  Takes in a destroynpc label and a string for the npc in need of deletion.
+     *  Proper validation will call {@link NPC} to remove the NPC from the server.
+     *  Proper name validation will remove the NPC from the data.yml file.
+     * @param sender Sender of the command
+     * @param cmd Command being sent
+     * @param label String label
+     * @param args String text
+     * @return True upon a valid command string
+     */
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         data = new DataManager(main);
@@ -43,7 +56,7 @@ public class DestroyNPC implements CommandExecutor, Listener {
                 try {
                     if (args[0].equals(npcNames.get(i))) {
 
-                        NPC.removeNPC(player, npc1.get(i));
+                        NPC.removeNPC(npc1.get(i));
                         player.sendMessage("NPC zooted");
 
                                 if (file.getConfigurationSection("data") != null) {

@@ -1,5 +1,6 @@
-package com.npc;
+package com.npc.Data;
 
+import com.npc.NpcConfiguration.NPC;
 import net.minecraft.network.protocol.game.PacketPlayOutEntity;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityHeadRotation;
 import net.minecraft.server.level.EntityPlayer;
@@ -14,6 +15,11 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class MovementListener implements Listener {
 
+    /***
+     * For each NPC within the server if a player is within a radius of 5 blocks
+     * follow the player's movements via head and body.
+     * @param e A PlayerMoveEvent
+     */
     @EventHandler
     public void onPlayerMove(PlayerMoveEvent e) {
 
@@ -35,13 +41,21 @@ public class MovementListener implements Listener {
         });
     }
 
+    /***
+     * Calculates the distance between a player and an NPC.
+     * Distance between two points is defined as:
+     * distance = square root((x2 - x1) * (x2 - x1) + (y2, y1) * (y2, y1))
+     * @param p A Player
+     * @param npc1 an NPC
+     * @return The distance between the player and NPC.
+     */
     private double calcDistance(Player p, EntityPlayer npc1) {
 
         double diffX = npc1.getBukkitEntity().getLocation().getX() - p.getLocation().getX(),
                 diffZ = npc1.getBukkitEntity().getLocation().getZ() - p.getLocation().getZ();
         double x = diffX < 0 ? (diffX * -1) : diffX, z = diffZ < 0 ? (diffZ * -1) : diffZ;
-        return Math.sqrt(Math.pow(x, 2) + Math.pow(z, 2));
 
+        return Math.sqrt(Math.pow(x, 2) + Math.pow(z, 2));
 
     }
 }

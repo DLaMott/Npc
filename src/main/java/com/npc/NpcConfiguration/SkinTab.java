@@ -1,22 +1,24 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
-import net.minecraft.world.entity.EntityTypes;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.profile.PlayerTextures;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SkinTab implements TabCompleter {
 
     List<String> arguments = new ArrayList<>();
 
+    /***
+     * Creates a tab completer for all possible {@link org.bukkit.entity.Entity} types.
+     * @param commandSender Entity sending command
+     * @param command the command
+     * @param label the label
+     * @param args the text
+     * @return
+     */
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] args) {
 

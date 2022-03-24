@@ -1,5 +1,7 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
+import com.npc.Data.DataManager;
+import com.npc.NpcMain;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
@@ -18,6 +20,12 @@ public class ClickNPC implements Listener {
         this.main = main;
     }
 
+    /***
+     * Takes in a click event. If the event is the instance of a player, find the npc
+     * being clicked. Upon click the config file will then be parsed to location the .message
+     * associated with the npc.
+     * @param event Event occuring
+     */
     @EventHandler
     public void theClick(rightClickNPC event) {
 
@@ -47,7 +55,8 @@ public class ClickNPC implements Listener {
                 }
             }
         }
-    }}
+    }
+}
 
 
 
