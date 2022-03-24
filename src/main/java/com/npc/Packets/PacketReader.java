@@ -1,5 +1,8 @@
-package com.npc;
+package com.npc.Packets;
 
+import com.npc.NpcConfiguration.NPC;
+import com.npc.NpcMain;
+import com.npc.NpcConfiguration.rightClickNPC;
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToMessageDecoder;

@@ -1,4 +1,4 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.entity.Player;

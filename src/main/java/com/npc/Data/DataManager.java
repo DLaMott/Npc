@@ -1,5 +1,6 @@
-package com.npc;
+package com.npc.Data;
 
+import com.npc.NpcMain;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;

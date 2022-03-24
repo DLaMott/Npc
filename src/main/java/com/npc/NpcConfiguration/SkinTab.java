@@ -1,4 +1,4 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;

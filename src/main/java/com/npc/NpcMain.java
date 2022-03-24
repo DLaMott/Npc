@@ -2,6 +2,17 @@ package com.npc;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import com.npc.Data.DataManager;
+import com.npc.Data.MovementListener;
+import com.npc.Destroy.DestroyNPC;
+import com.npc.Destroy.DestroyNpcTab;
+import com.npc.NpcConfiguration.AddNPC;
+import com.npc.NpcConfiguration.ClickNPC;
+import com.npc.NpcConfiguration.NPC;
+import com.npc.NpcConfiguration.SkinTab;
+import com.npc.Packets.OnJoin;
+import com.npc.Packets.OnQuit;
+import com.npc.Packets.PacketReader;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

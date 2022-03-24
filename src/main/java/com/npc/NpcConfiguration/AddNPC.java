@@ -1,4 +1,4 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -7,6 +7,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 public class AddNPC implements CommandExecutor, Listener {
+
+
 
     public AddNPC() {
 

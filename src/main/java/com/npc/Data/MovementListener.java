@@ -1,5 +1,6 @@
-package com.npc;
+package com.npc.Data;
 
+import com.npc.NpcConfiguration.NPC;
 import net.minecraft.network.protocol.game.PacketPlayOutEntity;
 import net.minecraft.network.protocol.game.PacketPlayOutEntityHeadRotation;
 import net.minecraft.server.level.EntityPlayer;

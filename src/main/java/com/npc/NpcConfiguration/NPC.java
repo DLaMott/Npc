@@ -1,9 +1,11 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
+import com.npc.Data.DataManager;
+import com.npc.NpcMain;
 import net.minecraft.network.protocol.game.*;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.EntityPlayer;

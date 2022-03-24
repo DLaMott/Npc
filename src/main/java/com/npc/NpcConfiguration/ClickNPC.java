@@ -1,5 +1,7 @@
-package com.npc;
+package com.npc.NpcConfiguration;
 
+import com.npc.Data.DataManager;
+import com.npc.NpcMain;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;

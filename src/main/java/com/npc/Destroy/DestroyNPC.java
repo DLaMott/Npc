@@ -1,5 +1,8 @@
-package com.npc;
+package com.npc.Destroy;
 
+import com.npc.Data.DataManager;
+import com.npc.NpcConfiguration.NPC;
+import com.npc.NpcMain;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
