@@ -21,6 +21,10 @@ public class PacketReader {
     private int count = 0;
     Channel channel;
 
+    /***
+     * Adds a {@link Player} to the packet reader pipeline. Allows the reading of player packet information.
+     * @param player The player to be injected to the {@link Channel} pipeline.
+     */
     public void inject(Player player) {
 
         CraftPlayer craftPlayer = (CraftPlayer) player;
@@ -42,6 +46,10 @@ public class PacketReader {
         });
     }
 
+    /***
+     * Removes a player from a Channel pipeline. Can be used on plugin disable or player quit event.
+     * @param player the {@link Player} to be removed from the pipeline
+     */
     public void unInject(Player player) {
 
         try{
@@ -67,6 +75,11 @@ public class PacketReader {
         }
     }
 
+    /***
+     * Reads a {@link Packet} from a {@link Player}
+     * @param player The player
+     * @param packet The Packet
+     */
     public void readPacket(Player player, Packet<?> packet) {
         if (packet.getClass().getSimpleName().equalsIgnoreCase("PacketPlayInUseEntity")) {
             // Counts all actions
