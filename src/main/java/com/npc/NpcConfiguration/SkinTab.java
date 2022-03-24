@@ -11,6 +11,14 @@ public class SkinTab implements TabCompleter {
 
     List<String> arguments = new ArrayList<>();
 
+    /***
+     * Creates a tab completer for all possible {@link org.bukkit.entity.Entity} types.
+     * @param commandSender Entity sending command
+     * @param command the command
+     * @param label the label
+     * @param args the text
+     * @return
+     */
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] args) {
 

@@ -11,6 +11,10 @@ public class OnQuit implements Listener {
         this.main = main;
     }
 
+    /***
+     * Upon a player quitting uninject the player from the channel
+     * @param event Player quits
+     */
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
 

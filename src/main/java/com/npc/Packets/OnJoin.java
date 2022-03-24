@@ -7,6 +7,11 @@ import org.bukkit.event.player.PlayerJoinEvent;
 
 
 public class OnJoin implements Listener {
+
+    /***
+     * Upon a player join event inject the player into the Channel
+     * @param event The player joined
+     */
     @EventHandler
     public void onJoin(PlayerJoinEvent event) {
         PacketReader reader = new PacketReader();
