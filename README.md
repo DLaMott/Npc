@@ -48,6 +48,11 @@ Navigate to data.yml and change the text area for (name: rename) and (message: c
 Close and restart server to see your changes!
 
 ## Delete NPC:
+
+Option one:
+In game admins can simply type \deletenpc and select the npc name they wish to delete. Simply restart the server to see the changes.
+
+Option two:
 Navigate to data.yml and delete the NPC fields for the NPC you wish to delete.
 Field example to delete:
 '1':
@@ -61,8 +66,6 @@ name: changeme
 text: ewogICJ0aW1lc3RhbXAiIDogMTYzODY4OTI2OTI2OSwKICAicHJvZml=
 signature: V27ZEnsBjrzYDm+0lctbZJKDOwVsrKQbaleVhzt775D45JPf17lsWw1rDFV8Eq/Aqu5A6x0=
 message: changeme
-
-There is a /deletenpc npc command included with this build but currently only destroys npc in game and does not yet remove the NPC from your data.yml. This means the NPC will reload upon server restart. 
 
 ## NPC example with command:
 ![npcshowcase](https://user-images.githubusercontent.com/66742430/144964825-0edca4cf-b2e7-4cbd-a899-7570363ba75e.png)
