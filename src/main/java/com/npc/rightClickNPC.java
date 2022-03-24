@@ -1,7 +1,6 @@
 package com.npc;
 
 import net.minecraft.server.level.EntityPlayer;
-
 import org.bukkit.entity.Player;
 import org.bukkit.event.Cancellable;
 import org.bukkit.event.Event;

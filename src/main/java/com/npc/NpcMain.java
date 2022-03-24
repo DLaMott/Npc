@@ -9,7 +9,6 @@ import org.bukkit.Location;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.util.UUID;
 
 public class NpcMain extends JavaPlugin {
@@ -27,6 +26,8 @@ public class NpcMain extends JavaPlugin {
         data.reloadConfig();
     }
 
+    public static PacketReader reader = new PacketReader();
+
     @Override
     public void onEnable() {
 
@@ -37,7 +38,6 @@ public class NpcMain extends JavaPlugin {
         }
 
         for (Player player : Bukkit.getOnlinePlayers()) {
-            PacketReader reader = new PacketReader();
             reader.inject(player);
         }
 
@@ -48,16 +48,25 @@ public class NpcMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new MovementListener(), this);
         this.getCommand("destroynpc").setTabCompleter(new DestroyNpcTab(this));
         this.getCommand("createnpc").setTabCompleter(new SkinTab());
+        this.getServer().getPluginManager().registerEvents(new OnQuit(this), this);
     }
 
     @Override
     public void onDisable() {
-        //this.getServer().getPluginManager().registerEvents(new OnQuit(), this);
+
         for (Player player : Bukkit.getOnlinePlayers()) {
-            PacketReader reader = new PacketReader();
+
             reader.unInject(player);
-            for (EntityPlayer npc : NPC.getNpcs())
-                NPC.removeNPC(npc);
+
+            for (EntityPlayer npc : NPC.getNpcs()){
+               try{
+
+                   NPC.removeNPC(npc);
+
+               }catch (Exception cx){
+                   cx.getCause();
+               }
+            }
         }
     }
 

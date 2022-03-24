@@ -138,7 +138,6 @@ public class NPC {
         PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
         connection.a(new PacketPlayOutEntityDestroy(npc.getBukkitEntity().getEntityId()));
         }
-        NPC.remove(npc);
     }
 
     /***

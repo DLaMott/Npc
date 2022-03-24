@@ -10,14 +10,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import java.lang.reflect.Field;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 public class PacketReader {
 
-    public Map<UUID, Channel> channels = new HashMap<UUID, Channel>();
+    public static Map<UUID, Channel> channels = new HashMap<UUID, Channel>();
     private int count = 0;
     Channel channel;
 
@@ -26,6 +23,7 @@ public class PacketReader {
         CraftPlayer craftPlayer = (CraftPlayer) player;
         channel = craftPlayer.getHandle().b.a.k;
         channels.put(player.getUniqueId(), channel);
+        System.out.println(player.getDisplayName() + " Added to pipeline");
 
         if (channel.pipeline().get("PacketInjector") != null) {
             return;
@@ -42,9 +40,28 @@ public class PacketReader {
     }
 
     public void unInject(Player player) {
-        channel = channels.get(player.getUniqueId());
-        channel.pipeline().remove("PacketInjector");
-        channels.remove(player.getUniqueId());
+
+        try{
+
+            channel = channels.get(player.getUniqueId());
+
+            try{
+
+            channel.pipeline().remove("PacketInjector");
+
+            }catch (Exception ex){
+
+                System.out.println(ex.getMessage());
+            }
+
+            channels.remove(player.getUniqueId());
+            System.out.println("Removed " + player.getDisplayName() + " from injector");
+
+        }catch (Exception ex){
+
+            System.out.println(Arrays.toString(ex.getStackTrace()));
+            System.out.println("Player not removed");
+        }
     }
 
     public void readPacket(Player player, Packet<?> packet) {

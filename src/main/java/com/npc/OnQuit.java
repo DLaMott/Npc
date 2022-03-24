@@ -5,13 +5,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 public class OnQuit implements Listener {
-    public OnQuit() {
-
+    private NpcMain main;
+    public OnQuit(NpcMain main){
+        this.main = main;
     }
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
-        PacketReader reader = new PacketReader();
-        reader.unInject(event.getPlayer());
+
+        NpcMain.reader.unInject(event.getPlayer());
     }
 }

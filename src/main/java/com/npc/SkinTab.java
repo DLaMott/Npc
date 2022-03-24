@@ -1,16 +1,10 @@
 package com.npc;
 
-import net.minecraft.world.entity.EntityTypes;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
-import org.bukkit.entity.Player;
-import org.bukkit.profile.PlayerTextures;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class SkinTab implements TabCompleter {
