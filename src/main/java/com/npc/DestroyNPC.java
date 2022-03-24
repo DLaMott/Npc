@@ -53,7 +53,7 @@ public class DestroyNPC implements CommandExecutor, Listener {
                 try {
                     if (args[0].equals(npcNames.get(i))) {
 
-                        NPC.removeNPC(player, npc1.get(i));
+                        NPC.removeNPC(npc1.get(i));
                         player.sendMessage("NPC zooted");
 
                                 if (file.getConfigurationSection("data") != null) {

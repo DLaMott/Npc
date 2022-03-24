@@ -57,7 +57,7 @@ public class NpcMain extends JavaPlugin {
             PacketReader reader = new PacketReader();
             reader.unInject(player);
             for (EntityPlayer npc : NPC.getNpcs())
-                NPC.removeNPC(player, npc);
+                NPC.removeNPC(npc);
         }
     }
 

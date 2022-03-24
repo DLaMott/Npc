@@ -59,8 +59,7 @@ public class NPC {
         addNPCPacket(npc);
         NPC.add(npc);
 
-        // variable for data custom message
-        String message = "Type a new message in the data.yml. Exit/Restart Server";
+        String message = "Type a new message in the data.yml. Exit/Restart/Reload Server";
 
         int var = 1;
         if (NpcMain.getData().contains("data")) {
@@ -81,6 +80,12 @@ public class NPC {
 
     }
 
+    /***
+     * Adds NPC packet to the server.
+     *
+     * @param location Location in the game
+     * @param profile Load game profile
+     */
     public static void loadNPC(Location location, GameProfile profile) {
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) location.getWorld()).getHandle();
@@ -118,9 +123,16 @@ public class NPC {
         }
     }
 
-    public static void removeNPC(Player player, EntityPlayer npc) {
+    /***
+     * Destroy the packet for an NPC
+     * @param npc a valid npc
+     */
+    public static void removeNPC(EntityPlayer npc) {
+        for(Player player : Bukkit.getOnlinePlayers()){
         PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
         connection.a(new PacketPlayOutEntityDestroy(npc.getBukkitEntity().getEntityId()));
+        }
+        NPC.remove(npc);
     }
 
     public static void addNPCPacket(EntityPlayer npc) {
@@ -140,6 +152,10 @@ public class NPC {
         }
     }
 
+    /***
+     *
+     * @return A list of NPCs
+     */
     public static List<EntityPlayer> getNpcs(){
         return NPC;
     }
