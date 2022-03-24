@@ -14,7 +14,6 @@ import java.util.UUID;
 
 public class NpcMain extends JavaPlugin {
     public static DataManager data;
-    private Config config;
 
     public static FileConfiguration getData() {
         return data.getConfig();
@@ -22,6 +21,10 @@ public class NpcMain extends JavaPlugin {
 
     public static void saveData() {
         data.saveConfig();
+    }
+
+    public static void reload(){
+        data.reloadConfig();
     }
 
     @Override
@@ -41,15 +44,15 @@ public class NpcMain extends JavaPlugin {
         this.getServer().getPluginManager().registerEvents(new OnJoin(), this);
         this.getServer().getPluginManager().registerEvents(new ClickNPC(this), this);
         this.getCommand("createnpc").setExecutor(new AddNPC());
-        this.getCommand("destroynpc").setExecutor(new DestroyNPC());
+        this.getCommand("destroynpc").setExecutor(new DestroyNPC(this));
         this.getServer().getPluginManager().registerEvents(new MovementListener(), this);
-        this.getCommand("destroynpc").setTabCompleter(new DestroyNpcTab());
+        this.getCommand("destroynpc").setTabCompleter(new DestroyNpcTab(this));
         this.getCommand("createnpc").setTabCompleter(new SkinTab());
     }
 
     @Override
     public void onDisable() {
-        this.getServer().getPluginManager().registerEvents(new OnQuit(), this);
+        //this.getServer().getPluginManager().registerEvents(new OnQuit(), this);
         for (Player player : Bukkit.getOnlinePlayers()) {
             PacketReader reader = new PacketReader();
             reader.unInject(player);
