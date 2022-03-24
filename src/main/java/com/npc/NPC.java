@@ -31,6 +31,11 @@ public class NPC {
 
     }
 
+    /***
+     *
+     * @param player Player sending the request
+     * @param skin Skin chosen
+     */
     public static void createNPC(Player player, String skin) {
 
         int min = 1;
