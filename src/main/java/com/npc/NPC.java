@@ -100,6 +100,12 @@ public class NPC {
 
     }
 
+    /***
+     *
+     * @param player Valid player
+     * @param name The name of the skin
+     * @return The texture and signature of a skin
+     */
     private static String[] getSkin(Player player, String name) {
         try {
             URL url = new URL("https://api.mojang.com/users/profiles/minecraft/" + name);
@@ -135,6 +141,10 @@ public class NPC {
         NPC.remove(npc);
     }
 
+    /***
+     *
+     * @param npc The NPC being added
+     */
     public static void addNPCPacket(EntityPlayer npc) {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerConnection connection = ((CraftPlayer) player).getHandle().b;
@@ -143,6 +153,10 @@ public class NPC {
         }
     }
 
+    /***
+     *
+     * @param player player connecting to the server
+     */
     public static void addJoinPacket(Player player) {
 
         for (EntityPlayer npc : NPC) {
