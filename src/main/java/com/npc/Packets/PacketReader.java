@@ -10,7 +10,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.PacketPlayInUseEntity;
 import net.minecraft.server.level.EntityPlayer;
 import org.bukkit.Bukkit;
-import org.bukkit.craftbukkit.v1_18_R1.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_18_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import java.lang.reflect.Field;
 import java.util.*;
@@ -28,7 +28,8 @@ public class PacketReader {
     public void inject(Player player) {
 
         CraftPlayer craftPlayer = (CraftPlayer) player;
-        channel = craftPlayer.getHandle().b.a.k;
+        //Entity Player playerconnection, playerConnection network manager, Network manager channel
+        channel = craftPlayer.getHandle().b.a.m;
         channels.put(player.getUniqueId(), channel);
         System.out.println(player.getDisplayName() + " Added to pipeline");
 
