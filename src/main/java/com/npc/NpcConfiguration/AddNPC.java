@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
+import java.util.Random;
+
 public class AddNPC implements CommandExecutor, Listener {
 
 
@@ -31,12 +33,18 @@ public class AddNPC implements CommandExecutor, Listener {
                 return true;
             }
             Player player = (Player) sender;
-            if (args.length == 0) {
-                NPC.createNPC(player, player.getName());
+            if (args.length == 0 || args.length == 1) {
+
+                int min = 1, max = 100;
+                Random random = new Random();
+                int generated = random.nextInt(max - min) + max;
+                String nullName = "RenameMe" + String.valueOf(generated);
+
+                NPC.createNPC(player,nullName, player.getName());
                 player.sendMessage("NPC created");
                 return true;
             }
-            NPC.createNPC(player, args[0]);
+            NPC.createNPC(player, args[0], args[1]);
             player.sendMessage("NPC created");
             return true;
         }

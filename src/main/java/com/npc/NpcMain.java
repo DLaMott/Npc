@@ -3,6 +3,7 @@ package com.npc;
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
 import com.npc.Data.DataManager;
+import com.npc.Data.Metrics;
 import com.npc.Data.MovementListener;
 import com.npc.Destroy.DestroyNPC;
 import com.npc.Destroy.DestroyNpcTab;
@@ -60,6 +61,11 @@ public class NpcMain extends JavaPlugin {
         this.getCommand("destroynpc").setTabCompleter(new DestroyNpcTab(this));
         this.getCommand("createnpc").setTabCompleter(new SkinTab());
         this.getServer().getPluginManager().registerEvents(new OnQuit(this), this);
+
+        int pluginId = 14744;
+        Metrics metrics = new Metrics(this, pluginId);
+
+        metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
     }
 
     @Override
