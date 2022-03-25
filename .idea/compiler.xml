@@ -9,5 +9,10 @@
         <module name="Npc" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="API" target="17" />
+      <module name="Plugin" target="17" />
+      <module name="v1_18_1" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>
