@@ -38,26 +38,18 @@ public class NPC {
      * @param player Player sending the request
      * @param skin Skin chosen
      */
-    public static void createNPC(Player player, String skin) {
-
-        int min = 1;
-        int max = 100;
-
-        Random random = new Random();
-
-        int value = random.nextInt(max + min) + min;
-        String npcname = "RenameMe" + String.valueOf(value);
+    public static void createNPC(Player player,String name, String skin) {
 
         MinecraftServer server = ((CraftServer) Bukkit.getServer()).getServer();
         WorldServer world = ((CraftWorld) Objects.requireNonNull(Bukkit.getWorld(player.getWorld().getName()))).getHandle();
-        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + npcname);
+        GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + name);
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile);
         npc.b(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(),
                 player.getLocation().getYaw(), player.getLocation().getPitch());
 
 
-        String[] name = getSkin(player, skin);
-        gameProfile.getProperties().put("textures", new Property("textures", name[0], name[1]));
+        String[] skin1 = getSkin(player, skin);
+        gameProfile.getProperties().put("textures", new Property("textures", skin1[0], skin1[1]));
         addNPCPacket(npc);
         NPC.add(npc);
 
@@ -74,9 +66,9 @@ public class NPC {
         NpcMain.getData().set("data." + var + ".p", player.getLocation().getPitch());
         NpcMain.getData().set("data." + var + ".yaw", player.getLocation().getYaw());
         NpcMain.getData().set("data." + var + ".world", player.getLocation().getWorld().getName());
-        NpcMain.getData().set("data." + var + ".name", npcname);
-        NpcMain.getData().set("data." + var + ".text", name[0]);
-        NpcMain.getData().set("data." + var + ".signature", name[1]);
+        NpcMain.getData().set("data." + var + ".name", name);
+        NpcMain.getData().set("data." + var + ".text", skin1[0]);
+        NpcMain.getData().set("data." + var + ".signature", skin1[1]);
         NpcMain.getData().set("data." + var + ".message", message);
         NpcMain.saveData();
 

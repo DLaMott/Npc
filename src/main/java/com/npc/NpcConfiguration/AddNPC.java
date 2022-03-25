@@ -32,11 +32,11 @@ public class AddNPC implements CommandExecutor, Listener {
             }
             Player player = (Player) sender;
             if (args.length == 0) {
-                NPC.createNPC(player, player.getName());
+                NPC.createNPC(player,args[0], player.getName());
                 player.sendMessage("NPC created");
                 return true;
             }
-            NPC.createNPC(player, args[0]);
+            NPC.createNPC(player, args[0], args[1]);
             player.sendMessage("NPC created");
             return true;
         }
