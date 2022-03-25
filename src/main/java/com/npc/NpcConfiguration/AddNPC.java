@@ -35,14 +35,26 @@ public class AddNPC implements CommandExecutor, Listener {
             Player player = (Player) sender;
             if (args.length == 0 || args.length == 1) {
 
+                if(args.length == 1){
+                    if(args[0].length() > 16){
+                        player.sendMessage("The name you have selected is too long. Limit 16 characters!");
+                        return false;
+                    }
+                    NPC.createNPC(player, args[0], player.getName());
+                    player.sendMessage("NPC created");
+                    return true;
+                }
+
                 int min = 1, max = 100;
                 Random random = new Random();
                 int generated = random.nextInt(max - min) + max;
                 String nullName = "RenameMe" + String.valueOf(generated);
-
                 NPC.createNPC(player,nullName, player.getName());
                 player.sendMessage("NPC created");
                 return true;
+            }if(args[0].length() > 16){
+                player.sendMessage("The name you have selected is too long. Limit 16 characters!");
+                return false;
             }
             NPC.createNPC(player, args[0], args[1]);
             player.sendMessage("NPC created");

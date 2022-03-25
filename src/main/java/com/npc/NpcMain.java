@@ -15,6 +15,7 @@ import com.npc.Packets.OnJoin;
 import com.npc.Packets.OnQuit;
 import com.npc.Packets.PacketReader;
 import net.minecraft.server.level.EntityPlayer;
+import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
@@ -88,6 +89,7 @@ public class NpcMain extends JavaPlugin {
     }
 
     public void loadNPC() {
+
         FileConfiguration file = data.getConfig();
         if (file.getConfigurationSection("data") != null) {
             file.getConfigurationSection("data").getKeys(false).forEach(npc -> {
@@ -100,6 +102,10 @@ public class NpcMain extends JavaPlugin {
                 location.setYaw((float) file.getDouble("data." + npc + ".yaw"));
 
                 String name = file.getString("data." + npc + ".name");
+                if(name.length() > 16) {
+                    name = "NameTooLong";
+                }
+
                 GameProfile gameProfile = new GameProfile(UUID.randomUUID(), ChatColor.DARK_AQUA + "" + name);
                 gameProfile.getProperties().put("textures", new Property("textures",
                         file.getString("data." + npc + ".text"),
