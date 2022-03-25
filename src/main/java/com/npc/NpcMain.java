@@ -64,6 +64,7 @@ public class NpcMain extends JavaPlugin {
 
         int pluginId = 14744;
         Metrics metrics = new Metrics(this, pluginId);
+
         metrics.addCustomChart(new Metrics.SimplePie("chart_id", () -> "My value"));
     }
 
