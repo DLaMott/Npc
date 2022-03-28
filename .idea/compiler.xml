@@ -10,9 +10,11 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="API" target="17" />
+      <module name="API" target="16" />
+      <module name="PLugin" target="16" />
       <module name="Plugin" target="17" />
       <module name="v1_18_1" target="17" />
+      <module name="v1_18_R1" target="16" />
     </bytecodeTargetLevel>
   </component>
 </project>

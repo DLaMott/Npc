@@ -15,7 +15,6 @@ import com.npc.Packets.OnJoin;
 import com.npc.Packets.OnQuit;
 import com.npc.Packets.PacketReader;
 import net.minecraft.server.level.EntityPlayer;
-import org.apache.commons.lang.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;

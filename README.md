@@ -6,11 +6,13 @@ This plugin allows a user to create an NPC that clones the user's skin. If users
 
 Please refer to version history to find the correct version for your spigot server! This plugin at this time is not backwards compatible. You must download the correct plugin version per your spigot server version! Refer to below for correct versions:
 
-For multiple versions go to the main spigot repo for this plugin
+For multiple versions go to the main spigot repo for this plugin.
+
+The current version supported is 1.18.2 servers only as this plugin is not backwards compatible!
 
 ### Spigot repo location: https://www.spigotmc.org/resources/npc.81087/
 
-Current Github version is for Spigot 1.18.1!
+Current GitHub version is for Spigot 1.18.2!
 
 Update 4.0 NPC fix/1.17.1 support : NPC head/body will rotate tracking a player when a player is within radius to the NPC, custom messages, various bugs.
 
@@ -20,13 +22,10 @@ Update 5.0 NPC can now be delete via command, custom skins by naming added, cust
 ## Todo:
 Add admin in game user menu for NPC editing
 Have one version to support all spigot versions.
-Complete NPC deletion command
-
-This plugin is ever growing!
 
 Suggestions are more than welcome also please feel free to reach out if issues arise.
 
-I will be re submitting older versions to support the upgrades and minor bug fixes.
+I will be re-submitting older versions to support the upgrades and minor bug fixes.
 
 ### Thank you,
 

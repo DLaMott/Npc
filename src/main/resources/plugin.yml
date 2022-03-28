@@ -2,7 +2,7 @@ main: com.npc.NpcMain
 name: NpcMain
 version: 1.01
 author: dylan
-api-version: 1.16
+api-version: 1.18
 commands:
   createnpc:
   destroynpc:
