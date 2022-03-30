@@ -12,6 +12,14 @@ The current version supported is 1.18.2 servers only as this plugin is not backw
 
 ### Spigot repo location: https://www.spigotmc.org/resources/npc.81087/
 
+### Statistics?
+In the recent update metrics have been added to give an overall view of the 
+current users for this plugin. Sadly, this will not show the previous version
+statistics but we can see the current version here:
+
+https://bstats.org/plugin/bukkit/NpcMain/14744
+
+
 Current GitHub version is for Spigot 1.18.2!
 
 Update 4.0 NPC fix/1.17.1 support : NPC head/body will rotate tracking a player when a player is within radius to the NPC, custom messages, various bugs.
