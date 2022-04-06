@@ -31,7 +31,6 @@ public class NPC {
 
     public NPC(NpcMain main) {
         this.main = main;
-
     }
 
     /***
@@ -47,7 +46,6 @@ public class NPC {
         EntityPlayer npc = new EntityPlayer(server, world, gameProfile);
         npc.b(player.getLocation().getX(), player.getLocation().getY(), player.getLocation().getZ(),
                 player.getLocation().getYaw(), player.getLocation().getPitch());
-
 
         String[] skin1 = getSkin(player, skin);
         gameProfile.getProperties().put("textures", new Property("textures", skin1[0], skin1[1]));
@@ -72,7 +70,6 @@ public class NPC {
         NpcMain.getData().set("data." + var + ".signature", skin1[1]);
         NpcMain.getData().set("data." + var + ".message", message);
         NpcMain.saveData();
-
     }
 
     /***
@@ -92,7 +89,6 @@ public class NPC {
 
         addNPCPacket(npc);
         NPC.add(npc);
-
     }
 
     /***
@@ -120,7 +116,6 @@ public class NPC {
             String texture = property.getValue();
             String signature = property.getSignature();
             return new String[]{texture, signature};
-
         }
     }
 
