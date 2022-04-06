@@ -13,10 +13,8 @@ import java.util.List;
 public class DestroyNpcTab implements TabCompleter {
 
     List<String> arguments = new ArrayList<>();
-
     private final NpcMain main;
     public static DataManager data;
-
 
     public DestroyNpcTab(NpcMain main) {
         this.main = main;

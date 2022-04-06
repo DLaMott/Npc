@@ -22,7 +22,6 @@ public class SkinTab implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender commandSender, Command command, String label, String[] args) {
 
-
         EntityType[] m = EntityType.values();
         for (int i = 0; i < m.length; i++){
             arguments.add(m[i].name());

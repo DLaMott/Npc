@@ -17,7 +17,6 @@ public class DestroyNPC implements CommandExecutor, Listener {
     private final NpcMain main;
     public static DataManager data;
 
-
     public DestroyNPC(NpcMain main) {
         this.main = main;
     }
