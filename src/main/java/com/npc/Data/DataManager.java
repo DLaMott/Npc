@@ -62,6 +62,5 @@ public class DataManager {
         if (!this.configFile.exists()) {
             this.plugin.saveResource("data.yml", false);
         }
-
     }
 }
