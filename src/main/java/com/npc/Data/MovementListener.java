@@ -36,7 +36,6 @@ public class MovementListener implements Listener {
                         (byte) (int) ((yaw % 360.0F) * 256.0F / 360.0F),
                         (byte) (int) ((pitch % 360.0F) * 256.0F / 360.0F), false));
                 connection.a(new PacketPlayOutEntityHeadRotation(npc, (byte) ((yaw % 360.0F) * 256.0F / 360.0F)));
-
             }
         });
     }
@@ -56,6 +55,5 @@ public class MovementListener implements Listener {
         double x = diffX < 0 ? (diffX * -1) : diffX, z = diffZ < 0 ? (diffZ * -1) : diffZ;
 
         return Math.sqrt(Math.pow(x, 2) + Math.pow(z, 2));
-
     }
 }
