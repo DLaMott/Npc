@@ -10,8 +10,6 @@ import java.util.Random;
 
 public class AddNPC implements CommandExecutor, Listener {
 
-
-
     public AddNPC() {
 
     }
